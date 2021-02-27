@@ -26,17 +26,18 @@ resource "azurerm_subnet" "idavalosSubnet" {
 # Create NIC
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
-resource "azurerm_network_interface" "idavalosNic1" {
-  name                = "vmnic1"  
+resource "azurerm_network_interface" "idavalosNic" {
+  name                = "vmnic-${var.vms[count.index]}"  
+  count               = length(var.vms)
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
     ip_configuration {
-    name                           = "idavalosipconfiguration1"
+    name                           = "idavalosipconfiguration-${var.vms[count.index]}"
     subnet_id                      = azurerm_subnet.idavalosSubnet.id 
     private_ip_address_allocation  = "Static"
-    private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.idavalosPublicIp1.id
+    private_ip_address             = "10.0.1.${count.index + 10}"
+    public_ip_address_id           = azurerm_public_ip.idavalosPublicIp[count.index].id
   }
 
     tags = {
@@ -48,8 +49,9 @@ resource "azurerm_network_interface" "idavalosNic1" {
 # IP pública
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
-resource "azurerm_public_ip" "idavalosPublicIp1" {
-  name                = "vmip1"
+resource "azurerm_public_ip" "idavalosPublicIp" {
+  name                = "vmPublicIp-${var.vms[count.index]}"
+  count               = length(var.vms)
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Dynamic"
