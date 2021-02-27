@@ -18,7 +18,7 @@ resource "azurerm_virtual_network" "idavalosNet" {
 resource "azurerm_subnet" "idavalosSubnet" {
     name                   = "terraformsubnet"
     resource_group_name    = azurerm_resource_group.rg.name
-    virtual_network_name   = azurerm_virtual_network.myNet.name
+    virtual_network_name   = azurerm_virtual_network.idavalosNet.name
     address_prefixes       = ["10.0.1.0/24"]
 
 }
