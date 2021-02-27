@@ -9,14 +9,15 @@ terraform {
   }
 }
 
+#Defined in local file credentials.tf
 # crea un service principal y rellena los siguientes datos para autenticar
-provider "azurerm" {
-  features {}
-  subscription_id = "7d93868a-1b56-48c5-b007-919349357b43"
-  client_id       = "1a0df43c-932d-4c13-b756-447224c03fb6"
-  client_secret   = "c_0_TZ6NsRWLAD~w.bz8p03-O9FmZZlg6s"
-  tenant_id       = "899789dc-202f-44b4-8472-a6d40f9eb440"
-}
+#provider "azurerm" {
+#  features {}
+#  subscription_id = "XXX"
+#  client_id       = "XXX"
+#  client_secret   = "XXX"
+#  tenant_id       = "XXX"
+#}
 
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group
 
