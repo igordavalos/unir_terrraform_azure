@@ -1,13 +1,14 @@
 # Creamos una máquina virtual
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 
-resource "azurerm_linux_virtual_machine" "idavalosVM1" {
-    name                = "idavalos_VM1"
+resource "azurerm_linux_virtual_machine" "idavalosVM" {
+    name                = "${var.vms[count.index]}"
+    count               = length(var.vms)
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
     size                = var.vm_size
     admin_username      = "adminUsername"
-    network_interface_ids = [ azurerm_network_interface.idavalosNic1.id ]
+    network_interface_ids = [ azurerm_network_interface.idavalosNic[count.index].id ]
     disable_password_authentication = true
 
     admin_ssh_key {
