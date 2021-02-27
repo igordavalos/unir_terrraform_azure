@@ -1,7 +1,7 @@
 # Security group
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group
 
-resource "azurerm_network_security_group" "mySecGroup" {
+resource "azurerm_network_security_group" "idavalosSecGroup" {
     name                = "sshtraffic"
     location            = azurerm_resource_group.rg.location
     resource_group_name = azurerm_resource_group.rg.name
@@ -26,8 +26,8 @@ resource "azurerm_network_security_group" "mySecGroup" {
 # Vinculamos el security group al interface de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
-resource "azurerm_network_interface_security_group_association" "mySecGroupAssociation1" {
-    network_interface_id      = azurerm_network_interface.myNic1.id
-    network_security_group_id = azurerm_network_security_group.mySecGroup.id
+resource "azurerm_network_interface_security_group_association" "idavalosSecGroupAssociation1" {
+    network_interface_id      = azurerm_network_interface.idavalosNic1.id
+    network_security_group_id = azurerm_network_security_group.idavalosSecGroup.id
 
 }
