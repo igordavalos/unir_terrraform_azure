@@ -1,7 +1,7 @@
 # Creación de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network
 
-resource "azurerm_virtual_network" "myNet" {
+resource "azurerm_virtual_network" "idavalosNet" {
     name                = "kubernetesnet"
     address_space       = ["10.0.0.0/16"]
     location            = azurerm_resource_group.rg.location
@@ -15,7 +15,7 @@ resource "azurerm_virtual_network" "myNet" {
 # Creación de subnet
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet
 
-resource "azurerm_subnet" "mySubnet" {
+resource "azurerm_subnet" "idavalosSubnet" {
     name                   = "terraformsubnet"
     resource_group_name    = azurerm_resource_group.rg.name
     virtual_network_name   = azurerm_virtual_network.myNet.name
@@ -26,17 +26,17 @@ resource "azurerm_subnet" "mySubnet" {
 # Create NIC
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface
 
-resource "azurerm_network_interface" "myNic1" {
+resource "azurerm_network_interface" "idavalosNic1" {
   name                = "vmnic1"  
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
     ip_configuration {
-    name                           = "myipconfiguration1"
-    subnet_id                      = azurerm_subnet.mySubnet.id 
+    name                           = "idavalosipconfiguration1"
+    subnet_id                      = azurerm_subnet.idavalosSubnet.id 
     private_ip_address_allocation  = "Static"
     private_ip_address             = "10.0.1.10"
-    public_ip_address_id           = azurerm_public_ip.myPublicIp1.id
+    public_ip_address_id           = azurerm_public_ip.idavalosPublicIp1.id
   }
 
     tags = {
@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "myNic1" {
 # IP pública
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip
 
-resource "azurerm_public_ip" "myPublicIp1" {
+resource "azurerm_public_ip" "idavalosPublicIp1" {
   name                = "vmip1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
