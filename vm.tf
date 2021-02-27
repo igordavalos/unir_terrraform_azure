@@ -2,7 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
 
 resource "azurerm_linux_virtual_machine" "idavalosVM1" {
-    name                = "idavalos VM1"
+    name                = "idavalos_VM1"
     resource_group_name = azurerm_resource_group.rg.name
     location            = azurerm_resource_group.rg.location
     size                = var.vm_size
