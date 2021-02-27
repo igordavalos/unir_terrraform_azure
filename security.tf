@@ -26,8 +26,9 @@ resource "azurerm_network_security_group" "idavalosSecGroup" {
 # Vinculamos el security group al interface de red
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_security_group_association
 
-resource "azurerm_network_interface_security_group_association" "idavalosSecGroupAssociation1" {
-    network_interface_id      = azurerm_network_interface.idavalosNic1.id
+resource "azurerm_network_interface_security_group_association" "idavalosSecGroupAssociation" {
+    count                     = length(var.vms)
+    network_interface_id      = azurerm_network_interface.idavalosNic[count.index].id
     network_security_group_id = azurerm_network_security_group.idavalosSecGroup.id
 
 }
