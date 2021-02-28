@@ -35,7 +35,7 @@ resource "azurerm_linux_virtual_machine" "idavalosVM" {
     }
 
     boot_diagnostics {
-        storage_account_uri = azurerm_storage_account.stAccount.primary_blob_endpoint
+        storage_account_uri = azurerm_storage_account.idavalosstAccount.primary_blob_endpoint
     }
 
     tags = {
