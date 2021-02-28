@@ -34,9 +34,9 @@ resource "azurerm_linux_virtual_machine" "idavalosVM" {
         version   = "1.2019.0810"
     }
 
-    #boot_diagnostics {
-    #    storage_account_uri = azurerm_storage_account.idavalosstAccount.primary_blob_endpoint
-    #}
+    boot_diagnostics {
+        storage_account_uri = azurerm_storage_account.idavalosstAccount.primary_blob_endpoint
+    }
 
     tags = {
         environment = "CP2"
