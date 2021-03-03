@@ -9,7 +9,8 @@ terraform {
   }
 }
 
-#Defined in local file credentials.tf
+# Defined in local file credentials.tf
+#
 # crea un service principal y rellena los siguientes datos para autenticar
 #provider "azurerm" {
 #  features {}
@@ -31,6 +32,8 @@ resource "azurerm_resource_group" "rg" {
 
 }
 
+# Este código está comentados por problemass que ha dado al hacer el despligue. Ver apartado Problemas del informe para más información.
+#
 # Storage account
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account
 
